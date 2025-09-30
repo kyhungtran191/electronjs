@@ -1,5 +1,5 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron/main')
-const { shell } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, } = require('electron/main')
+const { shell, ipcRenderer } = require('electron')
 const path = require('node:path')
 
 
@@ -80,6 +80,10 @@ const createWindow = () => {
 
     win.webContents.openDevTools()
     win.loadFile('index.html')
+    ipcMain.on('set-image', (event, data) => {
+        win.webContents.send('get-image', data)
+    })
+
 }
 
 app.whenReady().then(() => {

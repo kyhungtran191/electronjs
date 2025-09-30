@@ -16,11 +16,14 @@ captureButton.addEventListener("click", () => {
         body: "Image is successfully captured from live video.",
     });
 
+    window.electronAPI.sendImage(dataURL)
     // new Notification("Hello Justin", {
     //     body: "Congrats!"
     // })
 
 });
+
+
 
 navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
     video.srcObject = stream;
